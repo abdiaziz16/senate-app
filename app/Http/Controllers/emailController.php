@@ -20,42 +20,36 @@ class emailController extends Controller
      */
     public function emailSenator(SendEmailRequest $request)
     {
-        #Note: request information is already validated with SendEmailRequest class
-
         #Get senator information
         $senator = DB::table('senators')->where('id','=',$request['senator_id'])->first();
 
         #validate that senator exists and has an email address setup
         if(isset($senator) && !empty($senator->email)) {
-            # Create email params for our mail class
-            $emailParams = [
-                'sender_email' => $request['sender_email'],
-                'sender_last_name' => $request['sender_last_name'],
-                'body' => $request['message']
-            ];
-
-            #Call mail with the email params
+            #Call mail with the request params
             try{
-                Mail::to($senator->email)->send(new \App\Mail\Mail($emailParams));
-                #Send success response
+                Mail::to($senator->email)->send(new \App\Mail\Mail($request));
+
+                #Create success response
                 $response = response()->json([
                     'success' => true,
-                    'errors' => "Email Sent"
+                    'message' => "Email Sent"
                 ]);
             }catch (\Exception $e){
                 $response = response()->json([
                     'success' => false,
-                    'errors' => "Email Could not be sent. Please try again"
+                    'message' => "Email Could not be sent. Please try again"
                 ]);
-
+                # Log error
                 Log::error('Error (xe3232xds): Email could not be sent to: '.$senator->email);
             }
 
         }else{
             $response =  response()->json([
                 'success' => false,
-                'errors' => "Senator ID does not exist"
+                'message' => "Senator ID does not exist"
             ]);
+
+            #Log error
             Log::error('Error (f320kcxe232): Senator ID could not be found: '.$request['senator_id']);
         }
 
