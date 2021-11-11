@@ -1,6 +1,6 @@
 <h1>Relevant Files/Information:</h1>
 <H4>Database Information</H4>
-<p>The application is using a DB table called senators</p>
+<p>The application is using a DB called 'senate' and table name senators</p>
 <p>Migration for senators table can be found in the migrations folder</p>
 <p>The model for the table can be found at app\Models</p>
 
@@ -9,7 +9,7 @@
 <p>Example JSON for what the API expects</p>
     <code>
          {
-             "senator_id": "2",
+             "senator_id": 2,
              "sender_last_name": "FOO",
              "sender_email" : "bar@foo.com",
              "message": "Senator, please vote no, on bill 324 that is coming to floor this session"
@@ -22,7 +22,3 @@
 <p>A simple view for the email can be found in the views folder: mail.blade.php</p>
 <H4>ENV setting(s)</H4>
 <p>Please see .env file for the email configuration info. This application was tested using GMAIL</p>
-
-
-
-
