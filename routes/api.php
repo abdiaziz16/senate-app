@@ -16,7 +16,7 @@ use App\Models\Senators;
 |
 */
 
-Route::get('/email/send',[App\Http\Controllers\emailController::class, 'emailSenator']);
+Route::post('/email/send',[App\Http\Controllers\emailController::class, 'emailSenator']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
