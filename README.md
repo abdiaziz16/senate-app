@@ -5,7 +5,7 @@
 <p>The model for the table can be found at app\Models</p>
 
 <H4>API endpoint Information</H4>
-<p>Route (routes/api.php) : /post => pointing to emailController@emailSenator </p>
+<p>Route (routes/api.php) : email/send => pointing to emailController@emailSenator </p>
 <p>Example JSON for what the API expects</p>
     <code>
          {
